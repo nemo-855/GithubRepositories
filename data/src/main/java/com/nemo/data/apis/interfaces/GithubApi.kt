@@ -9,5 +9,5 @@ interface GithubApi {
     @GET("users/{userName}/repos")
     suspend fun fetchAllProjects(
         @Path("userName") userName: String
-    ): Call<FetchAllProjectsResponse>
+    ): Call<List<FetchAllProjectsResponse>>
 }

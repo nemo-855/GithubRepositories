@@ -29,5 +29,6 @@ android {
 dependencies {
     implementation retrofit
     implementation kotlinxSerializationJson
+    implementation kotlinCoroutines
     testImplementation junit
 }
