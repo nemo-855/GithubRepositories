@@ -1,4 +1,7 @@
 buildscript {
+    def versions = [:]
+    versions.dagger = '2.41'
+
     ext.buildConfig = [
             "compileSdk": 32,
             "minSdk"    : 26,
@@ -20,5 +23,11 @@ buildscript {
         //kotlin
         kotlinxSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
         kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+
+        //dagger
+        daggerHilt = "com.google.dagger:hilt-android:${versions.dagger}"
+        daggerHiltCompiler = "com.google.dagger:hilt-compiler:${versions.dagger}"
+        daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${versions.dagger}"
+        daggerHiltTest = "com.google.dagger:hilt-android-testing:${versions.dagger}"
     }
 }

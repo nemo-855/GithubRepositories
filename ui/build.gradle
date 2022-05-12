@@ -32,4 +32,9 @@ dependencies {
     testImplementation junit
     androidTestImplementation androidJunit
     androidTestImplementation espresso
+
+    //dagger
+    implementation daggerHilt
+    implementation daggerHiltTest
+    kapt daggerHiltCompiler
 }

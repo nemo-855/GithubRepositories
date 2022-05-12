@@ -31,4 +31,9 @@ dependencies {
     implementation kotlinxSerializationJson
     implementation kotlinCoroutines
     testImplementation junit
+
+    //dagger
+    implementation daggerHilt
+    implementation daggerHiltTest
+    kapt daggerHiltCompiler
 }
