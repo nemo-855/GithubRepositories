@@ -1,3 +1,5 @@
+apply plugin: 'kotlinx-serialization'
+
 android {
     compileSdk buildConfig.compileSdk
 
@@ -26,5 +28,6 @@ android {
 
 dependencies {
     implementation retrofit
+    implementation kotlinxSerializationJson
     testImplementation junit
 }
