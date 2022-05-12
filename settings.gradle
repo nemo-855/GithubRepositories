@@ -13,6 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GithubRepositories"
-include ':app'
 include ':ui'
 include ':data'
