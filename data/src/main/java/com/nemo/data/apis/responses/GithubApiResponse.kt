@@ -1,4 +1,4 @@
-package com.nemo.data.apis
+package com.nemo.data.apis.responses
 
 class FetchAllProjectsResponse(
     val id: Int,
