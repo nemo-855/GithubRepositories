@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -7,13 +7,11 @@ android {
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.nemo.githubrepositories"
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -32,10 +30,5 @@ android {
 }
 
 dependencies {
-
-    implementation coreKtx
-    implementation material
     testImplementation junit
-    androidTestImplementation androidJunit
-    androidTestImplementation espresso
 }
