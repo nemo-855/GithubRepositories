@@ -1,4 +1,4 @@
-package com.nemo.data.repositories
+package com.nemo.data.repositories.interfaces
 
 import com.nemo.data.model.GithubProject
 
