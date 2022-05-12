@@ -25,6 +25,7 @@ android {
 }
 
 dependencies {
+    implementation project(':data')
 
     implementation coreKtx
     implementation appCompat
