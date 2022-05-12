@@ -27,6 +27,8 @@ android {
 }
 
 dependencies {
+    implementation project(':data')
+
     implementation coreKtx
     implementation material
     testImplementation junit
