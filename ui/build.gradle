@@ -37,4 +37,8 @@ dependencies {
     implementation daggerHilt
     implementation daggerHiltTest
     kapt daggerHiltCompiler
+
+    //navigation component
+    implementation navigationUi
+    implementation navigationFragment
 }

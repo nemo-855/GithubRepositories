@@ -1,6 +1,7 @@
 buildscript {
     def versions = [:]
-    versions.dagger = '2.41'
+    versions.dagger = "2.41"
+    versions.navigation = "2.4.2"
 
     ext.buildConfig = [
             "compileSdk": 32,
@@ -29,5 +30,9 @@ buildscript {
         daggerHiltCompiler = "com.google.dagger:hilt-compiler:${versions.dagger}"
         daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${versions.dagger}"
         daggerHiltTest = "com.google.dagger:hilt-android-testing:${versions.dagger}"
+
+        //navigation component
+        navigationUi = "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+        navigationFragment = "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     }
 }
