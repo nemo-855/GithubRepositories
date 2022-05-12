@@ -1,7 +1,4 @@
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdk buildConfig.compileSdk
@@ -30,5 +27,8 @@ android {
 }
 
 dependencies {
+    implementation retrofit
+    implementation kotlinxSerializationJson
+    implementation kotlinCoroutines
     testImplementation junit
 }

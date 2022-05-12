@@ -1,11 +1,24 @@
 buildscript {
     apply from: 'gradle/dependencies.gradle'
+    repositories {
+        mavenCentral()
+    }
 }
 
 plugins {
     id 'com.android.application' version '7.2.0' apply false
     id 'com.android.library' version '7.2.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.21' apply false
+}
+
+subprojects {
+    if (project.name == "app") {
+        apply plugin: 'com.android.application'
+    } else {
+        apply plugin: 'com.android.library'
+    }
+    apply plugin: 'org.jetbrains.kotlin.android'
 }
 
 task clean(type: Delete) {
