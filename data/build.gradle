@@ -30,5 +30,6 @@ android {
 }
 
 dependencies {
+    implementation retrofit
     testImplementation junit
 }
