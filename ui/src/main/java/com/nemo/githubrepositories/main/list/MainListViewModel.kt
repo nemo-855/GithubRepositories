@@ -39,11 +39,10 @@ class MainListViewModel @Inject constructor(
                     }
                 }
             }.onFailure {
-                // FIXME: 通信エラー用に画像を修正
                 _uiModelListLD.value = listOf(
                     MainListUiModel.TextAndImageUiModel(
                         textResId = R.string.failed_connection,
-                        imageResId = R.drawable.crying_face
+                        imageResId = R.drawable.loudly_crying_face
                     )
                 )
             }
