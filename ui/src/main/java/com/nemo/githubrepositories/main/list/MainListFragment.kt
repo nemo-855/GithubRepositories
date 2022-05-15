@@ -2,7 +2,6 @@ package com.nemo.githubrepositories.main.list
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nemo.githubrepositories.R
@@ -26,7 +25,6 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
         val adapter = MainListAdapter()
         setUpRecyclerView(adapter)
         observeUiModelListLD(adapter)
-        observeErrorToastLD()
     }
 
     override fun onDestroyView() {
@@ -41,16 +39,6 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
     private fun observeUiModelListLD(adapter: MainListAdapter) {
         viewModel.uiModelListLD.observe(viewLifecycleOwner) { uiModelList ->
             adapter.submitList(uiModelList ?: return@observe)
-        }
-    }
-
-    private fun observeErrorToastLD() {
-        viewModel.errorToastLD.observe(viewLifecycleOwner) {
-            Toast.makeText(
-                requireContext(),
-                R.string.failed_search,
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 }

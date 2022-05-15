@@ -5,6 +5,11 @@
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">monospace</item>
     </style>
+    <style name="MiddleText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">monospace</item>
+    </style>
     <style name="LargeText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/primary_color</item>
         <item name="android:textSize">24sp</item>
