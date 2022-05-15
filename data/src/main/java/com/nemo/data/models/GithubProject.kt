@@ -1,4 +1,4 @@
-package com.nemo.data.model
+package com.nemo.data.models
 
 import java.time.ZonedDateTime
 

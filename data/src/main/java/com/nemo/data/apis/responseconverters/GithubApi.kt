@@ -1,7 +1,7 @@
-package com.nemo.data.apis.converter
+package com.nemo.data.apis.responseconverters
 
 import com.nemo.data.apis.responses.FetchAllProjectsResponse
-import com.nemo.data.model.GithubProject
+import com.nemo.data.models.GithubProject
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
