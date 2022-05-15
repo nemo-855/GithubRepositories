@@ -10,5 +10,5 @@ fun FetchAllProjectsResponse.toGithubProject() = GithubProject(
     name = name,
     isPrivate = private,
     ownerName = owner.login,
-    createdUnixTime = ZonedDateTime.parse(createdAt).withZoneSameInstant(ZoneId.of("Asia/Tokyo")),
+    createdTime = ZonedDateTime.parse(createdAt).withZoneSameInstant(ZoneId.of("Asia/Tokyo")),
 )

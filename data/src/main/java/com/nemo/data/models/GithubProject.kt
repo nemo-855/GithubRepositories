@@ -7,5 +7,5 @@ class GithubProject(
     val name: String,
     val isPrivate: Boolean,
     val ownerName: String,
-    val createdUnixTime: ZonedDateTime
+    val createdTime: ZonedDateTime
 )
