@@ -1,5 +1,6 @@
 package com.nemo.data.apis.responses
 
+import com.squareup.moshi.Json
 import kotlinx.serialization.Serializable
 
 class FetchAllProjectsResponse(
@@ -7,6 +8,7 @@ class FetchAllProjectsResponse(
     val name: String,
     val private: Boolean,
     val owner: OwnerResponse,
+    @Json(name = "created_at")
     val createdAt: String
 )
 

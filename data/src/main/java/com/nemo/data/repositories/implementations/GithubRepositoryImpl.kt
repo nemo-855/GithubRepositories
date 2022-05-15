@@ -1,19 +1,21 @@
 package com.nemo.data.repositories.implementations
 
-import com.nemo.data.apis.RetrofitManager
 import com.nemo.data.apis.converter.deserializeGithubApiErrorResponse
 import com.nemo.data.apis.converter.toGithubProject
+import com.nemo.data.apis.interfaces.GithubApi
 import com.nemo.data.model.GithubProject
 import com.nemo.data.repositories.interfaces.GithubRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.awaitResponse
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GithubRepositoryImpl(
-    private val retrofitManager: RetrofitManager
+@Singleton
+class GithubRepositoryImpl @Inject constructor(
+    private val githubApi: GithubApi
 ) : GithubRepository {
     override suspend fun fetchGithubProjects(userName: String): List<GithubProject> = withContext(Dispatchers.IO) {
-        val response = retrofitManager.githubApi.fetchAllProjects(userName).awaitResponse()
+        val response = githubApi.fetchAllProjects(userName)
         val body = response.body()
 
         return@withContext if (response.isSuccessful && body != null) {

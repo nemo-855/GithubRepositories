@@ -27,8 +27,24 @@ android {
 }
 
 dependencies {
-    implementation retrofit
     implementation kotlinxSerializationJson
     implementation kotlinCoroutines
     testImplementation junit
+
+    //dagger
+    implementation daggerHilt
+    implementation daggerHiltTest
+    kapt daggerHiltCompiler
+
+    //Retrofit2
+    implementation retrofit
+    implementation retrofitConverterMoshi
+
+    //Okhttp
+    implementation okhttp
+    implementation okhttpLog
+
+    //Moshi
+    implementation moshi
+    implementation moshiKotlin
 }
