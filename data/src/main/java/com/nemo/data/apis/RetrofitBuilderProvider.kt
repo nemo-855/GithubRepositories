@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-inline fun <reified T>provideApi(endPoint: String): T {
+inline fun <reified T>provideApi(baseUrl: String): T {
     val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
@@ -25,7 +25,7 @@ inline fun <reified T>provideApi(endPoint: String): T {
         .build()
 
     return Retrofit.Builder()
-        .baseUrl(endPoint)
+        .baseUrl(baseUrl)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(okHttpClient)
         .build()
