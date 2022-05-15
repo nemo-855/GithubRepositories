@@ -1,4 +1,4 @@
-package com.nemo.data.apis.converter
+package com.nemo.data.apis.responseconverters
 
 import com.nemo.data.apis.responses.GithubApiErrorResponse
 import kotlinx.serialization.json.Json

@@ -1,6 +1,6 @@
 package com.nemo.data.repositories.interfaces
 
-import com.nemo.data.model.GithubProject
+import com.nemo.data.models.GithubProject
 import com.nemo.data.repositories.implementations.GithubRepositoryImpl
 import dagger.Binds
 import dagger.Module

@@ -1,9 +1,9 @@
 package com.nemo.data.repositories.implementations
 
-import com.nemo.data.apis.converter.deserializeGithubApiErrorResponse
-import com.nemo.data.apis.converter.toGithubProject
 import com.nemo.data.apis.interfaces.GithubApi
-import com.nemo.data.model.GithubProject
+import com.nemo.data.apis.responseconverters.deserializeGithubApiErrorResponse
+import com.nemo.data.apis.responseconverters.toGithubProject
+import com.nemo.data.models.GithubProject
 import com.nemo.data.repositories.interfaces.GithubRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
