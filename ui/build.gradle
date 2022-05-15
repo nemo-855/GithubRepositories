@@ -46,4 +46,8 @@ dependencies {
     //navigation component
     implementation navigationUi
     implementation navigationFragment
+
+    //Groupie
+    implementation groupie
+    implementation groupieViewBinding
 }

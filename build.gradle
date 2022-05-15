@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath daggerHiltPlugin
+        classpath kotlinGradlePlugin
     }
 }
 
