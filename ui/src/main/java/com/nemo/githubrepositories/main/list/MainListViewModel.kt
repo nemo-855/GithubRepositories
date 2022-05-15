@@ -36,7 +36,6 @@ class MainListViewModel @Inject constructor(
         viewModelScope.launch {
             _uiModelListLD.value = listOf(ProgressIndicatorUiModel)
             runCatching {
-                // FIXME: 入力できるようにする
                 val fetchedProjectList = githubRepository.fetchGithubProjects(userName)
                 _uiModelListLD.value = when (fetchedProjectList.isEmpty()) {
                     true -> listOf(
