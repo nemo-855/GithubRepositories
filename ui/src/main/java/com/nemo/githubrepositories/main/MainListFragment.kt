@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.nemo.githubrepositories.R
-import com.nemo.githubrepositories.databinding.FragmentMainBinding
+import com.nemo.githubrepositories.databinding.FragmentMainListBinding
 
-class MainFragment : Fragment(R.layout.fragment_main) {
+class MainListFragment : Fragment(R.layout.fragment_main_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentMainBinding.bind(view)
+        val binding = FragmentMainListBinding.bind(view)
     }
 }

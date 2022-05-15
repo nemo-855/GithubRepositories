@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.nemo.githubrepositories.main.MainFragment"
+        android:name="com.nemo.githubrepositories.main.MainListFragment"
         android:label="MainFragment" />
 </navigation>
