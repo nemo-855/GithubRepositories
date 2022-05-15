@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories.main
+package com.nemo.githubrepositories.main.list
 
 import androidx.lifecycle.ViewModel
 import com.nemo.data.repositories.interfaces.GithubRepository

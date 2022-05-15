@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories.main
+package com.nemo.githubrepositories.main.list
 
 import android.os.Bundle
 import android.view.View
