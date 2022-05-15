@@ -33,7 +33,7 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
     }
 
     private fun setUpRecyclerView(adapter: MainListAdapter) {
-        binding.root.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 
     private fun observeUiModelListLD(adapter: MainListAdapter) {
