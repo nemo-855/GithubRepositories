@@ -20,10 +20,9 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainListBinding.bind(view)
 
-        viewModel.onClickSearchButton("nemo-855")
-
         val adapter = MainListAdapter()
         setUpRecyclerView(adapter)
+        setUpSearchLayout()
         observeUiModelListLD(adapter)
     }
 
@@ -33,7 +32,15 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
     }
 
     private fun setUpRecyclerView(adapter: MainListAdapter) {
-        binding.root.adapter = adapter
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun setUpSearchLayout() {
+        binding.searchLayout.setEndIconOnClickListener {
+            viewModel.onClickSearchButton(
+                userName = binding.inputEditText.text?.toString() ?: return@setEndIconOnClickListener
+            )
+        }
     }
 
     private fun observeUiModelListLD(adapter: MainListAdapter) {
