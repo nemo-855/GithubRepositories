@@ -76,6 +76,7 @@
         app:layout_constraintTop_toTopOf="@id/guideline_horizontal1" />
 
     <TextView
+        android:id="@+id/last_updated_text"
         style="@style/SmallText"
         android:layout_width="0dp"
         android:layout_height="0dp"
