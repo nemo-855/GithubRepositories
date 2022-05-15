@@ -3,6 +3,7 @@
     <string name="image">image</string>
     <string name="last_update">最終更新: %s</string>
     <string name="date_format">yyyy/d/M H時</string>
+    <string name="input_username">ユーザー名を入力してください</string>
     <string name="failed_connection">通信に失敗しました</string>
     <string name="search_result_is_empty">検索結果は0件でした</string>
 </resources>
