@@ -2,6 +2,9 @@
 
 Githubのpublicリポジトリを一覧表示するサンプルアプリ
 
+## アプリ外観
+<img width="300" src="https://user-images.githubusercontent.com/77588574/168717496-43bd3315-0898-408a-ae6c-ff2c951ce592.gif"/>
+
 ## アーキテクチャ
 
 MVVM + マルチモジュール + Repositoryパターン
