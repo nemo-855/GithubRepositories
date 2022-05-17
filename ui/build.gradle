@@ -34,9 +34,10 @@ dependencies {
 
     implementation coreKtx
     implementation material
+    implementation lifecycleOnly
     testImplementation junit
-    androidTestImplementation androidJunit
-    androidTestImplementation espresso
+    testImplementation kotlinCoroutinesTest
+    testImplementation archCoreTesting
 
     //dagger
     implementation daggerHilt
@@ -50,4 +51,11 @@ dependencies {
     //Groupie
     implementation groupie
     implementation groupieViewBinding
+
+    //truth
+    implementation truth
+
+    //Mockk
+    testImplementation mockk
+    testImplementation mockkAgent
 }

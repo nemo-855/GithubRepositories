@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.nemo.githubrepositories.R
 import com.nemo.githubrepositories.databinding.FragmentMainListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainListFragment : Fragment(R.layout.fragment_main_list) {
@@ -44,8 +48,12 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
     }
 
     private fun observeUiModelListLD(adapter: MainListAdapter) {
-        viewModel.uiModelListLD.observe(viewLifecycleOwner) { uiModelList ->
-            adapter.submitList(uiModelList ?: return@observe)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiModelListFlow.collect { uiModelList ->
+                    adapter.submitList(uiModelList)
+                }
+            }
         }
     }
 }

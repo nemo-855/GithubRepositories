@@ -2,8 +2,8 @@ package com.nemo.githubrepositories.main.list
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nemo.data.models.GithubProject
@@ -13,6 +13,8 @@ import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.P
 import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProjectUiModel
 import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.TextAndImageUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.time.ZonedDateTime
 import javax.inject.Inject
@@ -21,7 +23,7 @@ import javax.inject.Inject
 class MainListViewModel @Inject constructor(
     private val githubRepository: GithubRepository
 ) : ViewModel() {
-    private val _uiModelListLD = MutableLiveData<List<MainListUiModel>>(
+    private val _uiModelListFlow = MutableStateFlow<List<MainListUiModel>>(
         listOf(
             TextAndImageUiModel(
                 textResId = R.string.input_username,
@@ -29,15 +31,15 @@ class MainListViewModel @Inject constructor(
             )
         )
     )
-    val uiModelListLD: LiveData<List<MainListUiModel>>
-        get() = _uiModelListLD
+    val uiModelListFlow: StateFlow<List<MainListUiModel>>
+        get() = _uiModelListFlow
 
     fun onClickSearchButton(userName: String) {
         viewModelScope.launch {
-            _uiModelListLD.value = listOf(ProgressIndicatorUiModel)
             runCatching {
+                _uiModelListFlow.value = listOf(ProgressIndicatorUiModel)
                 val fetchedProjectList = githubRepository.fetchGithubProjects(userName)
-                _uiModelListLD.value = when (fetchedProjectList.isEmpty()) {
+                _uiModelListFlow.value = when (fetchedProjectList.isEmpty()) {
                     true -> listOf(
                         TextAndImageUiModel(
                             textResId = R.string.search_result_is_empty,
@@ -49,7 +51,7 @@ class MainListViewModel @Inject constructor(
                     }
                 }
             }.onFailure {
-                _uiModelListLD.value = listOf(
+                _uiModelListFlow.value = listOf(
                     TextAndImageUiModel(
                         textResId = R.string.failed_connection,
                         imageResId = R.drawable.loudly_crying_face
@@ -58,14 +60,6 @@ class MainListViewModel @Inject constructor(
             }
         }
     }
-
-    private fun GithubProject.toProjectUiModel() = ProjectUiModel(
-        id = id,
-        name = name,
-        isPrivate = isPrivate,
-        ownerName = ownerName,
-        createdTime = createdTime
-    )
 
     sealed class MainListUiModel {
         object ProgressIndicatorUiModel : MainListUiModel()
@@ -82,3 +76,12 @@ class MainListViewModel @Inject constructor(
         ) : MainListUiModel()
     }
 }
+
+@VisibleForTesting(otherwise = PRIVATE)
+fun GithubProject.toProjectUiModel() = ProjectUiModel(
+    id = id,
+    name = name,
+    isPrivate = isPrivate,
+    ownerName = ownerName,
+    createdTime = createdTime
+)
