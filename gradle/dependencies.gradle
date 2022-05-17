@@ -25,6 +25,7 @@ buildscript {
         espresso = 'androidx.test.espresso:espresso-core:3.4.0'
         coreKtx = "androidx.core:core-ktx:1.7.0"
         archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
+        lifecycleOnly = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 
         //kotlin
         kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"

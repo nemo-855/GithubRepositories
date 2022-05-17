@@ -34,6 +34,7 @@ dependencies {
 
     implementation coreKtx
     implementation material
+    implementation lifecycleOnly
     testImplementation junit
     testImplementation kotlinCoroutinesTest
     testImplementation archCoreTesting
