@@ -35,8 +35,8 @@ dependencies {
     implementation coreKtx
     implementation material
     testImplementation junit
-    androidTestImplementation androidJunit
-    androidTestImplementation espresso
+    testImplementation kotlinCoroutinesTest
+    testImplementation archCoreTesting
 
     //dagger
     implementation daggerHilt
@@ -53,4 +53,8 @@ dependencies {
 
     //truth
     implementation truth
+
+    //Mockk
+    testImplementation mockk
+    testImplementation mockkAgent
 }
