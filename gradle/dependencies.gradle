@@ -53,5 +53,8 @@ buildscript {
         //Groupie
         groupie = "com.github.lisawray.groupie:groupie:${versions.groupie}"
         groupieViewBinding = "com.github.lisawray.groupie:groupie-viewbinding:${versions.groupie}"
+
+        //Truth
+        truth = "com.google.truth:truth:1.1.3"
     }
 }

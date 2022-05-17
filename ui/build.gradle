@@ -50,4 +50,7 @@ dependencies {
     //Groupie
     implementation groupie
     implementation groupieViewBinding
+
+    //truth
+    implementation truth
 }
