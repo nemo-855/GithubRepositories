@@ -1,33 +1,21 @@
 package com.nemo.githubrepositories.main.list
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 
-class TestFlow<T>(
-    flow: Flow<T>,
-    scope: CoroutineScope
-) {
-    private val _history = mutableListOf<T>()
-    val history: List<T> = _history
-    private val job: Job
-
-    init {
-        job = flow.onEach { _history.add(it) }
-            .launchIn(scope)
-    }
-
-    fun close() {
+suspend fun <T> Flow<T>.valueHistory(
+    block: suspend CoroutineScope.() -> Unit
+): List<T> {
+    val list = mutableListOf<T>()
+    coroutineScope {
+        val job = launch {
+            this@valueHistory.toList(list)
+        }
+        block.invoke(this)
         job.cancel()
     }
-
-    fun getHistoryWithClose(): List<T> {
-        close()
-        return history
-    }
+    return list
 }
-
-fun <T> Flow<T>.toTest(scope: CoroutineScope): TestFlow<T> =
-    TestFlow(this, scope)

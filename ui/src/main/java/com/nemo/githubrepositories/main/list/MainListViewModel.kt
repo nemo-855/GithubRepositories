@@ -2,6 +2,8 @@ package com.nemo.githubrepositories.main.list
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nemo.data.models.GithubProject
@@ -34,8 +36,8 @@ class MainListViewModel @Inject constructor(
 
     fun onClickSearchButton(userName: String) {
         viewModelScope.launch {
-            _uiModelListFlow.value = listOf(ProgressIndicatorUiModel)
             runCatching {
+                _uiModelListFlow.value = listOf(ProgressIndicatorUiModel)
                 val fetchedProjectList = githubRepository.fetchGithubProjects(userName)
                 _uiModelListFlow.value = when (fetchedProjectList.isEmpty()) {
                     true -> listOf(
@@ -59,14 +61,6 @@ class MainListViewModel @Inject constructor(
         }
     }
 
-    private fun GithubProject.toProjectUiModel() = ProjectUiModel(
-        id = id,
-        name = name,
-        isPrivate = isPrivate,
-        ownerName = ownerName,
-        createdTime = createdTime
-    )
-
     sealed class MainListUiModel {
         object ProgressIndicatorUiModel : MainListUiModel()
         data class TextAndImageUiModel(
@@ -82,3 +76,12 @@ class MainListViewModel @Inject constructor(
         ) : MainListUiModel()
     }
 }
+
+@VisibleForTesting(otherwise = PRIVATE)
+fun GithubProject.toProjectUiModel() = ProjectUiModel(
+    id = id,
+    name = name,
+    isPrivate = isPrivate,
+    ownerName = ownerName,
+    createdTime = createdTime
+)
