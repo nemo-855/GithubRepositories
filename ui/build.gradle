@@ -26,6 +26,10 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.2"
     }
 }
 
@@ -58,4 +62,10 @@ dependencies {
     //Mockk
     testImplementation mockk
     testImplementation mockkAgent
+
+    //Jetpack Compose
+    implementation platform(composeBom)
+    implementation composeMaterial
+    implementation composeUiTooling
+    implementation composeUiToolingPreview
 }

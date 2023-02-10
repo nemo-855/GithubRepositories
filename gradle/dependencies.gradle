@@ -65,5 +65,11 @@ buildscript {
         //Mockk
         mockk = "io.mockk:mockk:${versions.mockk}"
         mockkAgent = "io.mockk:mockk-agent-jvm:${versions.mockk}"
+
+        //Jetpack Compose
+        composeBom = "androidx.compose:compose-bom:2022.12.00"
+        composeMaterial = "androidx.compose.material:material"
+        composeUiTooling = "androidx.compose.ui:ui-tooling"
+        composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
     }
 }
