@@ -5,6 +5,8 @@ import com.google.common.truth.Truth.assertThat
 import com.nemo.data.models.GithubProject
 import com.nemo.data.repositories.interfaces.GithubRepository
 import com.nemo.githubrepositories.R
+import com.nemo.githubrepositories.androidView.list.MainListViewModel
+import com.nemo.githubrepositories.androidView.list.toProjectUiModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

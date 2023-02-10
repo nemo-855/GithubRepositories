@@ -1,8 +1,8 @@
-package com.nemo.githubrepositories.main.list
+package com.nemo.githubrepositories.androidView.list
 
-import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProgressIndicatorUiModel
-import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProjectUiModel
-import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.TextAndImageUiModel
+import com.nemo.githubrepositories.androidView.list.MainListViewModel.MainListUiModel.ProgressIndicatorUiModel
+import com.nemo.githubrepositories.androidView.list.MainListViewModel.MainListUiModel.ProjectUiModel
+import com.nemo.githubrepositories.androidView.list.MainListViewModel.MainListUiModel.TextAndImageUiModel
 import com.xwray.groupie.GroupieAdapter
 
 class MainListAdapter : GroupieAdapter() {

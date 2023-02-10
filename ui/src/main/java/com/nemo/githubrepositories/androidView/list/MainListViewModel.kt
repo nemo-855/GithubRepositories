@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories.main.list
+package com.nemo.githubrepositories.androidView.list
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -9,9 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.nemo.data.models.GithubProject
 import com.nemo.data.repositories.interfaces.GithubRepository
 import com.nemo.githubrepositories.R
-import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProgressIndicatorUiModel
-import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProjectUiModel
-import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.TextAndImageUiModel
+import com.nemo.githubrepositories.androidView.list.MainListViewModel.MainListUiModel.ProgressIndicatorUiModel
+import com.nemo.githubrepositories.androidView.list.MainListViewModel.MainListUiModel.ProjectUiModel
+import com.nemo.githubrepositories.androidView.list.MainListViewModel.MainListUiModel.TextAndImageUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

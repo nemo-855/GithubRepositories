@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories.main
+package com.nemo.githubrepositories.androidView
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

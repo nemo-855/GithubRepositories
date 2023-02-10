@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories.main.list
+package com.nemo.githubrepositories.androidView.list
 
 import android.view.View
 import androidx.core.content.ContextCompat
