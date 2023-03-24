@@ -11,8 +11,25 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/nemo-855/GithubRepositories-KMM")
+            credentials {
+                def props = loadProperties("$rootDir/github.properties")
+                username = "${props.getProperty("github_user")}"
+                password = "${props.getProperty("github_key")}"
+            }
+        }
     }
 }
 rootProject.name = "GithubRepositories"
 include ':ui'
 include ':data'
+
+def loadProperties(filename) {
+    def props = new Properties()
+    file(filename).withInputStream {
+        props.load(it)
+    }
+    return props
+}
