@@ -35,9 +35,12 @@ dependencies {
     implementation coreKtx
     implementation material
     implementation lifecycleOnly
+    implementation lifecycleViewModel
     testImplementation junit
     testImplementation kotlinCoroutinesTest
     testImplementation archCoreTesting
+
+    implementation navigationCompose
 
     //dagger
     implementation daggerHilt
