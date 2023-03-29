@@ -47,6 +47,4 @@ dependencies {
     //Moshi
     implementation moshi
     implementation moshiKotlin
-
-    implementation shared
 }
