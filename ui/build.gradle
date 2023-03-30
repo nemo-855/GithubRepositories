@@ -35,9 +35,11 @@ dependencies {
     implementation project(':data')
 
     implementation coreKtx
+    implementation fragmentKtx
     implementation material
     implementation lifecycleOnly
     implementation lifecycleViewModel
+    implementation lifecycleCompose
     testImplementation junit
     testImplementation kotlinCoroutinesTest
     testImplementation archCoreTesting
@@ -65,4 +67,9 @@ dependencies {
     testImplementation mockkAgent
 
     implementation kotlinxDateTime
+
+    implementation koinCore
+
+    implementation ktorCore
+    implementation ktorOkhttp
 }
