@@ -44,8 +44,6 @@ dependencies {
     testImplementation kotlinCoroutinesTest
     testImplementation archCoreTesting
 
-    implementation navigationCompose
-
     //dagger
     implementation daggerHilt
     implementation daggerHiltTest
