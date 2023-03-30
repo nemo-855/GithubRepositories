@@ -1,9 +1,10 @@
 package com.nemo.githubrepositories.util
 
-import java.time.ZonedDateTime
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toJavaLocalDateTime
 import java.time.format.DateTimeFormatter
 
-fun ZonedDateTime.formatTime(format: String): String? {
+fun LocalDateTime.formatTime(format: String): String? {
     val dateFormatter = DateTimeFormatter.ofPattern(format)
-    return this.format(dateFormatter)
+    return this.toJavaLocalDateTime().format(dateFormatter)
 }
