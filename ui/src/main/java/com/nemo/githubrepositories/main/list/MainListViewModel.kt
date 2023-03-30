@@ -6,22 +6,22 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nemo.data.models.GithubProject
-import com.nemo.data.repositories.interfaces.GithubRepository
+import com.nemo.githubrepositories_kmm.data.models.GithubProject
 import com.nemo.githubrepositories.R
 import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProgressIndicatorUiModel
 import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.ProjectUiModel
 import com.nemo.githubrepositories.main.list.MainListViewModel.MainListUiModel.TextAndImageUiModel
+import com.nemo.githubrepositories_kmm.domain.GithubUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.time.ZonedDateTime
+import kotlinx.datetime.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
 class MainListViewModel @Inject constructor(
-    private val githubRepository: GithubRepository
+    private val githubUseCase: GithubUseCase
 ) : ViewModel() {
     private val _uiModelListFlow = MutableStateFlow<List<MainListUiModel>>(
         listOf(
@@ -38,7 +38,7 @@ class MainListViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching {
                 _uiModelListFlow.value = listOf(ProgressIndicatorUiModel)
-                val fetchedProjectList = githubRepository.fetchGithubProjects(userName)
+                val fetchedProjectList = githubUseCase.fetchGithubProjects(userName)
                 _uiModelListFlow.value = when (fetchedProjectList.isEmpty()) {
                     true -> listOf(
                         TextAndImageUiModel(
@@ -72,7 +72,7 @@ class MainListViewModel @Inject constructor(
             val name: String,
             val isPrivate: Boolean,
             val ownerName: String,
-            val createdTime: ZonedDateTime
+            val createdTime: LocalDateTime
         ) : MainListUiModel()
     }
 }
