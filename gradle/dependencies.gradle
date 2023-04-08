@@ -21,7 +21,7 @@ buildscript {
     ]
 
     ext {
-        shared = "com.nemo.githubrepositories_kmm:shared:0.0.6"
+        shared = "com.nemo.githubrepositories_kmm:shared:0.0.13-debug"
 
         junit = "junit:junit:4.13.2"
         appCompat = "androidx.appcompat:appcompat:1.4.1"
@@ -82,5 +82,7 @@ buildscript {
         //Ktor client
         ktorCore = "io.ktor:ktor-client-core:${versions.ktor}"
         ktorOkhttp = "io.ktor:ktor-client-okhttp:${versions.ktor}"
+        ktorContentNegotiation = "io.ktor:ktor-client-content-negotiation:${versions.ktor}"
+        ktorSerializations = "io.ktor:ktor-serialization-kotlinx-json:${versions.ktor}"
     }
 }
