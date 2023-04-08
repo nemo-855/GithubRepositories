@@ -32,8 +32,6 @@ android {
 dependencies {
     implementation shared
 
-    implementation project(':data')
-
     implementation coreKtx
     implementation fragmentKtx
     implementation material

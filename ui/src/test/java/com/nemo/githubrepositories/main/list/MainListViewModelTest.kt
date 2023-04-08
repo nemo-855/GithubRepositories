@@ -2,9 +2,9 @@ package com.nemo.githubrepositories.main.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.nemo.data.models.GithubProject
-import com.nemo.data.repositories.interfaces.GithubRepository
 import com.nemo.githubrepositories.R
+import com.nemo.githubrepositories_kmm.data.models.GithubProject
+import com.nemo.githubrepositories_kmm.domain.GithubUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -16,11 +16,13 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.time.ZonedDateTime
 
 @ExperimentalCoroutinesApi
 internal class MainListViewModelTest {
@@ -28,7 +30,7 @@ internal class MainListViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
     private val dispatcher = UnconfinedTestDispatcher()
 
-    @MockK private lateinit var mockGithubRepository: GithubRepository
+    @MockK private lateinit var mockGithubUseCase: GithubUseCase
 
     private lateinit var viewModel: MainListViewModel
 
@@ -38,7 +40,7 @@ internal class MainListViewModelTest {
         Dispatchers.setMain(dispatcher)
 
         viewModel = MainListViewModel(
-            githubRepository = mockGithubRepository
+            githubUseCase = mockGithubUseCase
         )
     }
 
@@ -52,7 +54,7 @@ internal class MainListViewModelTest {
         val mockUserName = String()
 
         coEvery {
-            mockGithubRepository.fetchGithubProjects(mockUserName)
+            mockGithubUseCase.fetchGithubProjects(mockUserName)
         } returns listOf()
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
@@ -68,7 +70,7 @@ internal class MainListViewModelTest {
         advanceUntilIdle()
 
         coVerify(exactly = 1) {
-            mockGithubRepository.fetchGithubProjects(mockUserName)
+            mockGithubUseCase.fetchGithubProjects(mockUserName)
         }
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
@@ -89,11 +91,11 @@ internal class MainListViewModelTest {
             name = String(),
             isPrivate = false,
             ownerName = String(),
-            createdTime = ZonedDateTime.now()
+            createdTime = Clock.System.now().toLocalDateTime(timeZone = TimeZone.UTC)
         )
 
         coEvery {
-            mockGithubRepository.fetchGithubProjects(mockUserName)
+            mockGithubUseCase.fetchGithubProjects(mockUserName)
         } returns listOf(mockGithubProject)
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
@@ -109,7 +111,7 @@ internal class MainListViewModelTest {
         advanceUntilIdle()
 
         coVerify(exactly = 1) {
-            mockGithubRepository.fetchGithubProjects(mockUserName)
+            mockGithubUseCase.fetchGithubProjects(mockUserName)
         }
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
@@ -124,7 +126,7 @@ internal class MainListViewModelTest {
         val mockUserName = String()
 
         coEvery {
-            mockGithubRepository.fetchGithubProjects(mockUserName)
+            mockGithubUseCase.fetchGithubProjects(mockUserName)
         } throws Exception()
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
@@ -140,7 +142,7 @@ internal class MainListViewModelTest {
         advanceUntilIdle()
 
         coVerify(exactly = 1) {
-            mockGithubRepository.fetchGithubProjects(mockUserName)
+            mockGithubUseCase.fetchGithubProjects(mockUserName)
         }
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(

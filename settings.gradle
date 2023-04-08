@@ -24,7 +24,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "GithubRepositories"
 include ':ui'
-include ':data'
 
 def loadProperties(filename) {
     def props = new Properties()
