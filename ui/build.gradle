@@ -18,11 +18,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
     buildFeatures {
         viewBinding true
@@ -30,11 +30,14 @@ android {
 }
 
 dependencies {
-    implementation project(':data')
+    implementation shared
 
     implementation coreKtx
+    implementation fragmentKtx
     implementation material
     implementation lifecycleOnly
+    implementation lifecycleViewModel
+    implementation lifecycleCompose
     testImplementation junit
     testImplementation kotlinCoroutinesTest
     testImplementation archCoreTesting
@@ -58,4 +61,13 @@ dependencies {
     //Mockk
     testImplementation mockk
     testImplementation mockkAgent
+
+    //KMMライブラリ内部で使われている依存
+    implementation kotlinxDateTime
+    implementation koinCore
+    implementation ktorCore
+    implementation ktorOkhttp
+    implementation ktorContentNegotiation
+    implementation ktorSerializations
+    implementation okhttpLog
 }

@@ -19,6 +19,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+github.properties
 
 # generated files
 bin/
