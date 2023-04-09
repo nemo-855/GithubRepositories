@@ -1,4 +1,5 @@
 android {
+    namespace 'com.nemo.githubrepositories'
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
@@ -29,7 +30,8 @@ android {
 }
 
 dependencies {
-    implementation shared
+    implementation project(":router")
+    implementation project(":kmm")
 
     implementation coreKtx
     implementation fragmentKtx
@@ -60,13 +62,4 @@ dependencies {
     //Mockk
     testImplementation mockk
     testImplementation mockkAgent
-
-    //KMMライブラリ内部で使われている依存
-    implementation kotlinxDateTime
-    implementation koinCore
-    implementation ktorCore
-    implementation ktorOkhttp
-    implementation ktorContentNegotiation
-    implementation ktorSerializations
-    implementation okhttpLog
 }

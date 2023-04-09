@@ -1,9 +1,8 @@
 android {
-    namespace 'com.nemo.githubrepositories'
+    namespace 'com.nemo.githubrepositories.kmm'
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.nemo.githubrepositories"
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
         versionCode 1
@@ -28,13 +27,20 @@ android {
 }
 
 dependencies {
-    implementation project(":ui")
-    implementation project(":router")
-    implementation project(":kmm")
 
-    implementation appCompat
     //dagger
     implementation daggerHilt
     implementation daggerHiltTest
     kapt daggerHiltCompiler
+
+    api shared
+
+    //KMMライブラリ内部で使用している依存関係。kmmモジュールに依存する側でも読めるようにしたいのでapi
+    api kotlinxDateTime
+    api koinCore
+    api ktorCore
+    api ktorOkhttp
+    api ktorContentNegotiation
+    api ktorSerializations
+    api okhttpLog
 }

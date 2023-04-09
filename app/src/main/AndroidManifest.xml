@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".app.GithubRepositoriesApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GithubRepositories"
-        android:name=".app.GithubRepositoriesApp"/>
-
+        android:theme="@style/Theme.GithubRepositories" />
 </manifest>
