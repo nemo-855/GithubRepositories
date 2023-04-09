@@ -7,7 +7,8 @@ Githubのpublicリポジトリを一覧表示するサンプルアプリ
 
 ## アーキテクチャ
 
-MVVM + マルチモジュール + Repositoryパターン
+- MVVM + マルチモジュール + Repositoryパターン
+- domain層より下の階層の内容は[KMMライブラリ](https://github.com/nemo-855/GithubRepositories-KMM)として切り出して、使用している
 
 ## 開発規則
 
