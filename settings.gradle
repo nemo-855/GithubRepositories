@@ -23,7 +23,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GithubRepositories"
-include ':ui'
 
 def loadProperties(filename) {
     def props = new Properties()
@@ -32,3 +31,8 @@ def loadProperties(filename) {
     }
     return props
 }
+
+include ':app'
+include ':ui'
+include ':router'
+include ':kmm'

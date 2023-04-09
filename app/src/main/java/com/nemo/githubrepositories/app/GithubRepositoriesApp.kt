@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories
+package com.nemo.githubrepositories.app
 
 import android.app.Application
 import com.nemo.githubrepositories_kmm.di.initDi

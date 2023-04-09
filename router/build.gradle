@@ -1,5 +1,5 @@
 android {
-    namespace 'com.nemo.githubrepositories'
+    namespace 'com.nemo.githubrepositories.router'
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
@@ -24,42 +24,12 @@ android {
     kotlinOptions {
         jvmTarget = '18'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
-    implementation project(":router")
-    implementation project(":kmm")
-
-    implementation coreKtx
-    implementation fragmentKtx
-    implementation material
-    implementation lifecycleOnly
-    implementation lifecycleViewModel
-    implementation lifecycleCompose
-    testImplementation junit
-    testImplementation kotlinCoroutinesTest
-    testImplementation archCoreTesting
 
     //dagger
     implementation daggerHilt
     implementation daggerHiltTest
     kapt daggerHiltCompiler
-
-    //navigation component
-    implementation navigationUi
-    implementation navigationFragment
-
-    //Groupie
-    implementation groupie
-    implementation groupieViewBinding
-
-    //truth
-    implementation truth
-
-    //Mockk
-    testImplementation mockk
-    testImplementation mockkAgent
 }

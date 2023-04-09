@@ -3,6 +3,7 @@ android {
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
+        applicationId "com.nemo.githubrepositories"
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
         versionCode 1
@@ -24,42 +25,16 @@ android {
     kotlinOptions {
         jvmTarget = '18'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
+    implementation project(":ui")
     implementation project(":router")
     implementation project(":kmm")
 
-    implementation coreKtx
-    implementation fragmentKtx
-    implementation material
-    implementation lifecycleOnly
-    implementation lifecycleViewModel
-    implementation lifecycleCompose
-    testImplementation junit
-    testImplementation kotlinCoroutinesTest
-    testImplementation archCoreTesting
-
+    implementation appCompat
     //dagger
     implementation daggerHilt
     implementation daggerHiltTest
     kapt daggerHiltCompiler
-
-    //navigation component
-    implementation navigationUi
-    implementation navigationFragment
-
-    //Groupie
-    implementation groupie
-    implementation groupieViewBinding
-
-    //truth
-    implementation truth
-
-    //Mockk
-    testImplementation mockk
-    testImplementation mockkAgent
 }

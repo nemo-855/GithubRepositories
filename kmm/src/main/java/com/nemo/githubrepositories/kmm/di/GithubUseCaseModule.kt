@@ -1,4 +1,4 @@
-package com.nemo.githubrepositories.di
+package com.nemo.githubrepositories.kmm.di
 
 import com.nemo.githubrepositories_kmm.di.UseCaseModule
 import com.nemo.githubrepositories_kmm.domain.GithubUseCase
