@@ -41,8 +41,6 @@ GitHub flow
 - Groupie
 
 ### Http通信
-- Retrofit2 + Okhttp3
-- Moshi(Json converter)
 - (KMMライブラリ側)Ktor Client
 
 ### Jetpack
