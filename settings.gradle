@@ -34,3 +34,4 @@ def loadProperties(filename) {
 
 include ':app'
 include ':ui'
+include ':router'

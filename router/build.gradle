@@ -1,9 +1,8 @@
 android {
-    namespace 'com.nemo.githubrepositories'
+    namespace 'com.nemo.githubrepositories.router'
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.nemo.githubrepositories"
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
         versionCode 1
@@ -28,10 +27,7 @@ android {
 }
 
 dependencies {
-    implementation project(":ui")
-    implementation project(":router")
 
-    implementation appCompat
     //dagger
     implementation daggerHilt
     implementation daggerHiltTest
