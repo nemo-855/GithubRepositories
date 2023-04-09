@@ -2,7 +2,6 @@ android {
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.nemo.githubrepositories"
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
         versionCode 1
