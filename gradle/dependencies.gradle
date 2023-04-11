@@ -14,14 +14,14 @@ buildscript {
     versions.ktor = "2.2.4"
 
     ext.buildConfig = [
-            "compileSdk": 32,
+            "compileSdk": 33,
             "minSdk"    : 26,
             "targetSdk" : 31,
             "buildTools": "30.0.3"
     ]
 
     ext {
-        shared = "com.nemo.githubrepositories_kmm:shared:0.0.13"
+        shared = "com.nemo.githubrepositories_kmm_android:shared:0.0.16"
 
         junit = "junit:junit:4.13.2"
         appCompat = "androidx.appcompat:appcompat:1.4.1"
@@ -40,6 +40,7 @@ buildscript {
         composeMaterial3 = "androidx.compose.material3:material3"
         composeFoundation = "androidx.compose.foundation:foundation"
         composeUi = "androidx.compose.ui:ui"
+        composeNavigation = "androidx.navigation:navigation-compose:2.5.3"
 
         //kotlin
         kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"

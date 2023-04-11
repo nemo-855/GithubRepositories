@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.nemo.githubrepositories.R
-import com.nemo.githubrepositories.databinding.FragmentMainListBinding
+import com.nemo.githubrepositories.ui.R
+import com.nemo.githubrepositories.ui.databinding.FragmentMainListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

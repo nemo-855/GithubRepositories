@@ -1,8 +1,8 @@
 package com.nemo.githubrepositories.main.list
 
 import android.view.View
-import com.nemo.githubrepositories.R
-import com.nemo.githubrepositories.databinding.MainListProjectItemBinding
+import com.nemo.githubrepositories.ui.R
+import com.nemo.githubrepositories.ui.databinding.MainListProjectItemBinding
 import com.nemo.githubrepositories.util.formatTime
 import com.xwray.groupie.viewbinding.BindableItem
 
