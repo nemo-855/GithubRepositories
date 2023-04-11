@@ -34,6 +34,7 @@ buildscript {
         lifecycleOnly = "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
         lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
         lifecycleCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.lifecycle}"
+        hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 
         //compose
         composeBom = "androidx.compose:compose-bom:2023.03.00"
@@ -52,6 +53,7 @@ buildscript {
         //dagger
         daggerHilt = "com.google.dagger:hilt-android:${versions.dagger}"
         daggerHiltCompiler = "com.google.dagger:hilt-compiler:${versions.dagger}"
+        daggerHiltAndroidCompiler = "com.google.dagger:hilt-android-compile:${versions.dagger}"
         daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${versions.dagger}"
         daggerHiltTest = "com.google.dagger:hilt-android-testing:${versions.dagger}"
 
