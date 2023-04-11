@@ -2,7 +2,7 @@ package com.nemo.compose_ui.designsystem
 
 import androidx.compose.ui.graphics.Color
 
-object ColorPalette {
+object GithubColorPalette {
     val BlueGrey900 = Color(0xFF263238)
     val BlueGrey800 = Color(0xFF37474F)
     val BlueGrey700 = Color(0xFF455A64)
