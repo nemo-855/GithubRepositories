@@ -1,8 +1,8 @@
 package com.nemo.githubrepositories.main.list
 
 import android.view.View
-import com.nemo.githubrepositories.R
-import com.nemo.githubrepositories.databinding.CircularProgressLayoutBinding
+import com.nemo.githubrepositories.ui.R
+import com.nemo.githubrepositories.ui.databinding.CircularProgressLayoutBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
 class MainListProgressItem : BindableItem<CircularProgressLayoutBinding>() {

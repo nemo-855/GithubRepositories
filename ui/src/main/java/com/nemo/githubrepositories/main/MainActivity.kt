@@ -2,7 +2,7 @@ package com.nemo.githubrepositories.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.nemo.githubrepositories.databinding.ActivityMainBinding
+import com.nemo.githubrepositories.ui.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

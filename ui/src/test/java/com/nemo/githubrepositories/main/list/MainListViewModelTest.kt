@@ -2,7 +2,7 @@ package com.nemo.githubrepositories.main.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.nemo.githubrepositories.R
+import com.nemo.githubrepositories.ui.R
 import com.nemo.githubrepositories_kmm.data.models.GithubProject
 import com.nemo.githubrepositories_kmm.domain.GithubUseCase
 import io.mockk.MockKAnnotations
