@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search_image">検索画像</string>
+    <string name="error_occurred">エラー発生</string>
     <string name="input_username">ユーザー名を入力してください</string>
+    <string name="error_occurred_description">通信に失敗しました。\nユーザー名を修正して再度試してみてください。</string>
 </resources>
