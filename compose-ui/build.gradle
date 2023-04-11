@@ -25,6 +25,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.2"
+    }
 }
 
 dependencies {
@@ -37,4 +43,9 @@ dependencies {
     implementation daggerHilt
     implementation daggerHiltTest
     kapt daggerHiltCompiler
+
+    implementation platform(composeBom)
+    implementation composeMaterial3
+    implementation composeFoundation
+    implementation composeUi
 }
