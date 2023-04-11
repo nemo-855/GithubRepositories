@@ -1,5 +1,5 @@
 android {
-    namespace 'com.nemo.githubrepositories'
+    namespace 'com.nemo.githubrepositories.composeui'
     compileSdk buildConfig.compileSdk
 
     defaultConfig {
