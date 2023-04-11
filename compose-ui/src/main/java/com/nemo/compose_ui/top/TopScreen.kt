@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nemo.compose_ui.designsystem.GithubTypography
@@ -47,7 +49,12 @@ fun TopScreenContent(
     uiState: TopUiState,
     modifier: Modifier,
 ) {
-    if (uiState.isInitial) {
+    if (uiState.hasErrorOccurred) {
+        Column(modifier = modifier) {
+            Spacer(modifier = Modifier.height(32.dp))
+            ErrorOccurred()
+        }
+    } else if (uiState.isInitial) {
         Column(modifier = modifier) {
             Spacer(modifier = Modifier.height(32.dp))
             SearchUsername()
@@ -77,6 +84,32 @@ private fun SearchUsername() {
         )
     }
 }
+
+@Composable
+private fun ErrorOccurred() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.crying_face),
+            contentDescription = stringResource(id = R.string.error_occurred),
+            modifier = Modifier
+                .width(300.dp)
+                .padding(32.dp)
+                .aspectRatio(1f),
+            contentScale = ContentScale.Crop,
+        )
+        Text(
+            text = stringResource(id = R.string.error_occurred_description),
+            style = GithubTypography.bodyLarge,
+            textAlign = TextAlign.Center,
+        )
+    }
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
