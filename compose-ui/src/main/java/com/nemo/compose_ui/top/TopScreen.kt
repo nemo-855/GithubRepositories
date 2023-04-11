@@ -8,7 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -69,4 +76,23 @@ private fun SearchUsername() {
             style = GithubTypography.bodyLarge,
         )
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(
+    onClickIconButton: () -> Unit,
+) {
+    CenterAlignedTopAppBar(
+        title = {},
+        navigationIcon = {
+            IconButton(onClick = onClickIconButton) {
+                Icon(
+                    Icons.Outlined.Search,
+                    contentDescription = stringResource(id = R.string.username_search_button)
+                )
+            }
+        },
+        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
+    )
 }
