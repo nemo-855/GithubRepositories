@@ -41,6 +41,7 @@ dependencies {
     //dagger
     implementation daggerHilt
     implementation daggerHiltTest
+    implementation hiltNavigationCompose
     kapt daggerHiltCompiler
 
     implementation platform(composeBom)
