@@ -1,5 +1,6 @@
 buildscript {
     def versions = [:]
+    versions.shared = "0.0.16"
     versions.dagger = "2.45"
     versions.navigation = "2.4.2"
     versions.retrofit = "2.9.0"
@@ -21,7 +22,8 @@ buildscript {
     ]
 
     ext {
-        shared = "com.nemo.githubrepositories_kmm_android:shared:0.0.16"
+        shared = "com.nemo.githubrepositories_kmm_android:shared:${versions.shared}"
+        sharedDebug = "com.nemo.githubrepositories_kmm_android:shared:${versions.shared}-debug"
 
         junit = "junit:junit:4.13.2"
         appCompat = "androidx.appcompat:appcompat:1.4.1"
