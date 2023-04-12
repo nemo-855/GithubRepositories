@@ -4,16 +4,28 @@ import androidx.compose.runtime.Stable
 import com.nemo.githubrepositories_kmm.data.models.GithubProject
 
 @Stable
-class TopUiState(
-    val isInitial: Boolean,
-    val repository: GithubProject?,
-    val hasErrorOccurred: Boolean,
+data class TopUiState(
+    val searchBar: SearchBarUiModel,
+    val content: ContentUiModel,
 ) {
     companion object {
         fun initial() = TopUiState(
-            isInitial = true,
-            repository = null,
-            hasErrorOccurred = false,
+            searchBar = SearchBarUiModel(text = String()),
+            content = ContentUiModel(
+                hasNotSearched = true,
+                repository = null,
+                hasErrorOccurred = false
+            ),
         )
     }
 }
+
+data class SearchBarUiModel(
+    val text: String
+)
+
+data class ContentUiModel(
+    val hasNotSearched: Boolean,
+    val repository: GithubProject?,
+    val hasErrorOccurred: Boolean,
+)

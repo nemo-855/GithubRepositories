@@ -2,6 +2,7 @@
 <resources>
     <string name="search_image">検索画像</string>
     <string name="input_username">ユーザー名を入力してください</string>
+    <string name="search_by_username">ユーザー名で検索</string>
     <string name="username_search_button">ユーザー名検索ボタン</string>
     <string name="error_occurred">エラー発生</string>
     <string name="error_occurred_description">通信に失敗しました。\nユーザー名を修正して再度試してみてください。</string>
