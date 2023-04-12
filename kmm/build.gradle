@@ -33,7 +33,8 @@ dependencies {
     implementation daggerHiltTest
     kapt daggerHiltCompiler
 
-    api shared
+    releaseApi shared
+    debugApi sharedDebug
 
     //KMMライブラリ内部で使用している依存関係。kmmモジュールに依存する側でも読めるようにしたいのでapi
     api kotlinxDateTime

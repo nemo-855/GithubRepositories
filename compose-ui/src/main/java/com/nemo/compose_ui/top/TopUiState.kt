@@ -13,11 +13,36 @@ data class TopUiState(
             searchBar = SearchBarUiModel(text = String()),
             content = ContentUiModel(
                 hasNotSearched = true,
-                repository = null,
-                hasErrorOccurred = false
+                projects = emptyList(),
+                hasErrorOccurred = false,
+                isLoading = false,
             ),
         )
     }
+
+    fun onErrorOccurred() = this.copy(
+        content = ContentUiModel(
+            hasNotSearched = false,
+            projects = emptyList(),
+            hasErrorOccurred = true,
+            isLoading = false,
+        )
+    )
+
+    fun onDataFetched(newProjects: List<GithubProject>) = this.copy(
+        content = this.content.copy(
+            hasNotSearched = false,
+            hasErrorOccurred = false,
+            projects = newProjects,
+            isLoading = false,
+        )
+    )
+
+    fun onStartLoading() = this.copy(
+        content = this.content.copy(
+            isLoading = true
+        )
+    )
 }
 
 data class SearchBarUiModel(
@@ -26,6 +51,7 @@ data class SearchBarUiModel(
 
 data class ContentUiModel(
     val hasNotSearched: Boolean,
-    val repository: GithubProject?,
+    val projects: List<GithubProject>,
     val hasErrorOccurred: Boolean,
+    val isLoading: Boolean
 )
