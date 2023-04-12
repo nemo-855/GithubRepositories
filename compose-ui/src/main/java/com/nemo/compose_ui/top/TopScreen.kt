@@ -9,7 +9,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.nemo.compose_ui.designsystem.GithubScaffold
 import com.nemo.compose_ui.designsystem.GithubTypography
 import com.nemo.githubrepositories.composeui.R
 
@@ -34,23 +43,42 @@ fun TopScreen(
     TopScreenContent(
         modifier = modifier,
         uiState = state,
+        onClickSearchButton = {
+            viewModel.onClickSearchButton()
+        },
+        onSearchBarValueChanged = { newValue ->
+            viewModel.onSearchBarValueChanged(newValue = newValue)
+        },
     )
 }
 
 @Composable
-fun TopScreenContent(
+private fun TopScreenContent(
     uiState: TopUiState,
     modifier: Modifier,
+    onClickSearchButton: () -> Unit,
+    onSearchBarValueChanged: (newValue: String) -> Unit,
 ) {
-    if (uiState.hasErrorOccurred) {
-        Column(modifier = modifier) {
-            Spacer(modifier = Modifier.height(32.dp))
-            ErrorOccurred()
+    GithubScaffold(
+        modifier = modifier,
+        topBar = {
+            SearchBar(
+                onClickIconButton = onClickSearchButton,
+                onValueChanged = onSearchBarValueChanged,
+                uiModel = uiState.searchBar,
+            )
         }
-    } else if (uiState.isInitial) {
+    ) {
         Column(modifier = modifier) {
-            Spacer(modifier = Modifier.height(32.dp))
-            SearchUsername()
+            Spacer(modifier = Modifier.height(it.calculateTopPadding()))
+
+            if (uiState.content.hasErrorOccurred) {
+                Spacer(modifier = Modifier.height(32.dp))
+                ErrorOccurred()
+            } else if (uiState.content.hasNotSearched) {
+                Spacer(modifier = Modifier.height(32.dp))
+                SearchUsername()
+            }
         }
     }
 }
@@ -101,4 +129,40 @@ private fun ErrorOccurred() {
             textAlign = TextAlign.Center,
         )
     }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SearchBar(
+    onClickIconButton: () -> Unit,
+    onValueChanged: (newValue: String) -> Unit,
+    uiModel: SearchBarUiModel,
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            TextField(
+                value = uiModel.text,
+                onValueChange = onValueChanged,
+                maxLines = 1,
+                singleLine = true,
+                placeholder = {
+                    Text(
+                        text = stringResource(id = R.string.search_by_username),
+                        style = GithubTypography.bodySmall,
+                        textAlign = TextAlign.Center,
+                    )
+                },
+            )
+        },
+        navigationIcon = {
+            IconButton(onClick = onClickIconButton) {
+                Icon(
+                    Icons.Outlined.Search,
+                    contentDescription = stringResource(id = R.string.username_search_button)
+                )
+            }
+        },
+        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
+    )
 }
