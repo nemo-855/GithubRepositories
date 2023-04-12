@@ -13,9 +13,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nemo.compose_ui.designsystem.GithubScaffold
 import com.nemo.compose_ui.designsystem.GithubTypography
+import com.nemo.compose_ui.designsystem.LinearLoading
 import com.nemo.compose_ui.util.formatTime
 import com.nemo.githubrepositories.composeui.R
 import com.nemo.githubrepositories_kmm.data.models.GithubProject
@@ -51,7 +55,7 @@ fun TopScreen(
         modifier = modifier,
         uiState = state,
         onClickSearchButton = {
-            viewModel.onClickSearchButton()
+            viewModel.onClickSearchButton(searchQuery = it)
         },
         onSearchBarValueChanged = { newValue ->
             viewModel.onSearchBarValueChanged(newValue = newValue)
@@ -63,7 +67,7 @@ fun TopScreen(
 private fun TopScreenContent(
     uiState: TopUiState,
     modifier: Modifier,
-    onClickSearchButton: () -> Unit,
+    onClickSearchButton: (searchQuery: String) -> Unit,
     onSearchBarValueChanged: (newValue: String) -> Unit,
 ) {
     GithubScaffold(
@@ -79,12 +83,16 @@ private fun TopScreenContent(
         Column(modifier = modifier) {
             Spacer(modifier = Modifier.height(it.calculateTopPadding()))
 
-            if (uiState.content.hasErrorOccurred) {
-                Spacer(modifier = Modifier.height(32.dp))
-                ErrorOccurred()
+            if (uiState.content.isLoading) {
+                LinearLoading()
             } else if (uiState.content.hasNotSearched) {
                 Spacer(modifier = Modifier.height(32.dp))
                 SearchUsername()
+            } else if (uiState.content.projects.isNotEmpty()) {
+                ProjectCards(projects = uiState.content.projects)
+            } else {
+                Spacer(modifier = Modifier.height(32.dp))
+                ErrorOccurred()
             }
         }
     }
@@ -94,6 +102,7 @@ private fun TopScreenContent(
 private fun SearchUsername() {
     Column(
         modifier = Modifier
+            .padding(horizontal = 16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -169,8 +178,33 @@ private fun ProjectCard(project: GithubProject) {
                         project.createdTime.formatTime(format = stringResource(id = R.string.date_format)).orEmpty()
                     ),
                     style = GithubTypography.bodyMedium,
-                    modifier = Modifier.wrapContentWidth().wrapContentHeight()
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .wrapContentHeight()
                 )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ProjectCards(projects: List<GithubProject>) {
+    LazyColumn(
+        modifier = Modifier.padding(horizontal = 16.dp),
+    ) {
+        itemsIndexed(projects) {index, item ->
+            when (index) {
+                projects.size - 1 -> {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    ProjectCard(project = item)
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                else -> {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    ProjectCard(project = item)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Divider()
+                }
             }
         }
     }
@@ -180,6 +214,7 @@ private fun ProjectCard(project: GithubProject) {
 private fun ErrorOccurred() {
     Column(
         modifier = Modifier
+            .padding(horizontal = 16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -205,7 +240,7 @@ private fun ErrorOccurred() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SearchBar(
-    onClickIconButton: () -> Unit,
+    onClickIconButton: (searchQuery: String) -> Unit,
     onValueChanged: (newValue: String) -> Unit,
     uiModel: SearchBarUiModel,
 ) {
@@ -226,7 +261,7 @@ private fun SearchBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = onClickIconButton) {
+            IconButton(onClick = { onClickIconButton(uiModel.text) }) {
                 Icon(
                     Icons.Outlined.Search,
                     contentDescription = stringResource(id = R.string.username_search_button)
