@@ -1,14 +1,18 @@
 package com.nemo.compose_ui.top
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -27,11 +31,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nemo.compose_ui.designsystem.GithubScaffold
 import com.nemo.compose_ui.designsystem.GithubTypography
+import com.nemo.compose_ui.util.formatTime
 import com.nemo.githubrepositories.composeui.R
+import com.nemo.githubrepositories_kmm.data.models.GithubProject
 
 @Composable
 fun TopScreen(
@@ -103,6 +110,69 @@ private fun SearchUsername() {
             text = stringResource(id = R.string.input_username),
             style = GithubTypography.bodyLarge,
         )
+    }
+}
+
+@Composable
+private fun ProjectCard(project: GithubProject) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        verticalAlignment = Alignment.Top
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_baseline_link_24),
+            contentDescription = stringResource(id = R.string.project_image),
+            modifier = Modifier
+                .size(40.dp),
+            contentScale = ContentScale.Crop,
+        )
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .wrapContentHeight()
+                .padding(start = 8.dp),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = project.ownerName,
+                style = GithubTypography.bodyMedium,
+            )
+
+            Text(
+                text = project.name,
+                style = GithubTypography.displaySmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_baseline_link_24),
+                    contentDescription = stringResource(id = R.string.link_button),
+                    modifier = Modifier.size(24.dp),
+                    contentScale = ContentScale.Crop,
+                )
+
+                Text(
+                    text = stringResource(
+                        id = R.string.last_update_time,
+                        project.createdTime.formatTime(format = stringResource(id = R.string.date_format)).orEmpty()
+                    ),
+                    style = GithubTypography.bodyMedium,
+                    modifier = Modifier.wrapContentWidth().wrapContentHeight()
+                )
+            }
+        }
     }
 }
 

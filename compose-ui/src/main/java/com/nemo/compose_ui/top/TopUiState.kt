@@ -13,7 +13,7 @@ data class TopUiState(
             searchBar = SearchBarUiModel(text = String()),
             content = ContentUiModel(
                 hasNotSearched = true,
-                repository = null,
+                project = null,
                 hasErrorOccurred = false
             ),
         )
@@ -26,6 +26,6 @@ data class SearchBarUiModel(
 
 data class ContentUiModel(
     val hasNotSearched: Boolean,
-    val repository: GithubProject?,
+    val project: GithubProject?,
     val hasErrorOccurred: Boolean,
 )
