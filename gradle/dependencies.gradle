@@ -94,5 +94,8 @@ buildscript {
         ktorOkhttp = "io.ktor:ktor-client-okhttp:${versions.ktor}"
         ktorContentNegotiation = "io.ktor:ktor-client-content-negotiation:${versions.ktor}"
         ktorSerializations = "io.ktor:ktor-serialization-kotlinx-json:${versions.ktor}"
+
+        //Coil
+        coilCompose = "io.coil-kt:coil-compose:2.3.0"
     }
 }
