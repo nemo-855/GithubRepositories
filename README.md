@@ -3,7 +3,7 @@
 Githubのpublicリポジトリを一覧表示するサンプルアプリ
 
 ## アプリ外観
-<img width="300" src="https://user-images.githubusercontent.com/77588574/231626224-83e1b529-c549-495a-9390-cd7f4fcd25a2.gif"/>
+<img width="300" src="https://user-images.githubusercontent.com/77588574/231629242-276363ef-1fcf-4a30-9399-ba79aa23361e.gif"/>
 
 ## アーキテクチャ
 
