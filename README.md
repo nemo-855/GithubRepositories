@@ -3,12 +3,34 @@
 Githubのpublicリポジトリを一覧表示するサンプルアプリ
 
 ## アプリ外観
-<img width="300" src="https://user-images.githubusercontent.com/77588574/168717496-43bd3315-0898-408a-ae6c-ff2c951ce592.gif"/>
+<img width="300" src="https://user-images.githubusercontent.com/77588574/231626224-83e1b529-c549-495a-9390-cd7f4fcd25a2.gif"/>
 
 ## アーキテクチャ
 
 - MVVM + マルチモジュール + Repositoryパターン
 - domain層より下の階層の内容は[KMMライブラリ](https://github.com/nemo-855/GithubRepositories-KMM)として切り出して、使用している
+
+## モジュール構成
+- app
+  - Applicationクラスを保持するmodule。全モジュールに依存し、DIの管理等を担う。
+- compose-ui
+  - Jetpack Compse用のui module。構造が大きくなってきたら、compose-uiモジュールをさらにfeature毎に縦分割していく予定。
+- ui
+  - AndroidView用のui module。
+- kmm
+  - KMMライブラリへの直接的な依存を閉じ込めるためのモジュール。KMMへの参照を行いたいモジュールはこのKMMモジュールに依存させる。
+  
+```mermaid
+graph LR
+A[app] --> B[ui]
+A --> C[compose-ui]
+A --> D[kmm]
+B --> D[kmm]
+C --> D[kmm]
+```
+[^1]
+[^1]: 矢印の向きが依存の向きです
+
 
 ## 開発規則
 
