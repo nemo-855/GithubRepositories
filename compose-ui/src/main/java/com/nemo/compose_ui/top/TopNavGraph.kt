@@ -3,9 +3,9 @@ package com.nemo.compose_ui.top
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-fun NavGraphBuilder.topNavGraph() {
+fun NavGraphBuilder.topNavGraph(onLinkClick: (String) -> Unit) {
     composable(route = TopNavGraph.topRoute) {
-        TopScreen()
+        TopScreen(onLinkClick = onLinkClick)
     }
 }
 
