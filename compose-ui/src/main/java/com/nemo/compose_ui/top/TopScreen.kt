@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -30,13 +32,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.nemo.compose_ui.designsystem.GithubScaffold
 import com.nemo.compose_ui.designsystem.GithubTypography
 import com.nemo.compose_ui.designsystem.LinearLoading
@@ -48,6 +54,7 @@ import com.nemo.githubrepositories_kmm.data.models.GithubProject
 fun TopScreen(
     modifier: Modifier = Modifier,
     viewModel: TopViewModel = hiltViewModel(),
+    onLinkClick: (String) -> Unit,
 ) {
     val state: TopUiState by viewModel.uiState.collectAsState()
 
@@ -60,6 +67,9 @@ fun TopScreen(
         onSearchBarValueChanged = { newValue ->
             viewModel.onSearchBarValueChanged(newValue = newValue)
         },
+        onClickProjectCardLinkButton = { url ->
+            onLinkClick(url)
+        }
     )
 }
 
@@ -69,6 +79,7 @@ private fun TopScreenContent(
     modifier: Modifier,
     onClickSearchButton: (searchQuery: String) -> Unit,
     onSearchBarValueChanged: (newValue: String) -> Unit,
+    onClickProjectCardLinkButton: (url: String) -> Unit,
 ) {
     GithubScaffold(
         modifier = modifier,
@@ -89,7 +100,10 @@ private fun TopScreenContent(
                 Spacer(modifier = Modifier.height(32.dp))
                 SearchUsername()
             } else if (uiState.content.projects.isNotEmpty()) {
-                ProjectCards(projects = uiState.content.projects)
+                ProjectCards(
+                    projects = uiState.content.projects,
+                    onClickLinkButton = onClickProjectCardLinkButton,
+                )
             } else {
                 Spacer(modifier = Modifier.height(32.dp))
                 ErrorOccurred()
@@ -123,18 +137,25 @@ private fun SearchUsername() {
 }
 
 @Composable
-private fun ProjectCard(project: GithubProject) {
+private fun ProjectCard(
+    project: GithubProject,
+    onClickLinkButton: (String) -> Unit,
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
         verticalAlignment = Alignment.Top
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_baseline_link_24),
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(project.owner.avatarUrl)
+                .crossfade(true)
+                .build(),
             contentDescription = stringResource(id = R.string.project_image),
             modifier = Modifier
-                .size(40.dp),
+                .size(40.dp)
+                .clip(CircleShape),
             contentScale = ContentScale.Crop,
         )
 
@@ -147,7 +168,7 @@ private fun ProjectCard(project: GithubProject) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = project.ownerName,
+                text = project.owner.name,
                 style = GithubTypography.bodyMedium,
             )
 
@@ -165,12 +186,18 @@ private fun ProjectCard(project: GithubProject) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_baseline_link_24),
-                    contentDescription = stringResource(id = R.string.link_button),
+                IconButton(
+                    onClick = { onClickLinkButton(project.htmlUrl) },
                     modifier = Modifier.size(24.dp),
-                    contentScale = ContentScale.Crop,
-                )
+                    enabled = true,
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_baseline_link_24),
+                        contentDescription = stringResource(id = R.string.link_button),
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop,
+                    )
+                }
 
                 Text(
                     text = stringResource(
@@ -188,7 +215,10 @@ private fun ProjectCard(project: GithubProject) {
 }
 
 @Composable
-private fun ProjectCards(projects: List<GithubProject>) {
+private fun ProjectCards(
+    projects: List<GithubProject>,
+    onClickLinkButton: (String) -> Unit,
+) {
     LazyColumn(
         modifier = Modifier.padding(horizontal = 16.dp),
     ) {
@@ -196,12 +226,18 @@ private fun ProjectCards(projects: List<GithubProject>) {
             when (index) {
                 projects.size - 1 -> {
                     Spacer(modifier = Modifier.height(8.dp))
-                    ProjectCard(project = item)
+                    ProjectCard(
+                        project = item,
+                        onClickLinkButton = onClickLinkButton,
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
                 else -> {
                     Spacer(modifier = Modifier.height(8.dp))
-                    ProjectCard(project = item)
+                    ProjectCard(
+                        project = item,
+                        onClickLinkButton = onClickLinkButton,
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                     Divider()
                 }

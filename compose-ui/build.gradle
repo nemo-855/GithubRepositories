@@ -49,4 +49,6 @@ dependencies {
     implementation composeFoundation
     implementation composeUi
     implementation composeNavigation
+
+    implementation coilCompose
 }

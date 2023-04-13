@@ -82,6 +82,6 @@ fun GithubProject.toProjectUiModel() = ProjectUiModel(
     id = id,
     name = name,
     isPrivate = isPrivate,
-    ownerName = ownerName,
+    ownerName = owner.name,
     createdTime = createdTime
 )
