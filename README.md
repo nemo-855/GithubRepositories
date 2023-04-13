@@ -2,7 +2,7 @@
 
 Githubのpublicリポジトリを一覧表示するサンプルアプリ
 
-## アプリ外観
+## アプリ外観(Jetpack Compose)
 <img width="300" src="https://user-images.githubusercontent.com/77588574/231629242-276363ef-1fcf-4a30-9399-ba79aa23361e.gif"/>
 
 ## アーキテクチャ
