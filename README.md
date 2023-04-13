@@ -60,10 +60,14 @@ GitHub flow
 - (KMMライブラリ側)Koin
 
 ### UIライブラリ
+- Jetpack Compose
 - Groupie
 
 ### Http通信
 - (KMMライブラリ側)Ktor Client
+
+## 画像処理
+- Coil
 
 ### Jetpack
 - Navigation Component
