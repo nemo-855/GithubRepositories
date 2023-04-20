@@ -16,30 +16,27 @@ import kotlinx.coroutines.launch
 class MainListFragment : Fragment(R.layout.fragment_main_list) {
     private val viewModel: MainListViewModel by viewModels()
 
-    private var _binding: FragmentMainListBinding? = null
-    private val binding: FragmentMainListBinding
-        get() = _binding!!
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMainListBinding.bind(view)
+        val binding = FragmentMainListBinding.bind(view)
 
         val adapter = MainListAdapter()
-        setUpRecyclerView(adapter)
-        setUpSearchLayout()
-        observeUiModelListLD(adapter)
+        setUpRecyclerView(
+            adapter = adapter,
+            binding = binding
+        )
+        setUpSearchLayout(binding = binding)
+        observeUiModelListLD(adapter = adapter)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    private fun setUpRecyclerView(adapter: MainListAdapter) {
+    private fun setUpRecyclerView(
+        adapter: MainListAdapter,
+        binding: FragmentMainListBinding,
+    ) {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun setUpSearchLayout() {
+    private fun setUpSearchLayout(binding: FragmentMainListBinding) {
         binding.searchLayout.setEndIconOnClickListener {
             viewModel.onClickSearchButton(
                 userName = binding.inputEditText.text?.toString() ?: return@setEndIconOnClickListener
