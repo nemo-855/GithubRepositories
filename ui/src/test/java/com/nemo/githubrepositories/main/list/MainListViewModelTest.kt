@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.nemo.githubrepositories.ui.R
 import com.nemo.githubrepositories_kmm.data.models.GithubProject
+import com.nemo.githubrepositories_kmm.data.models.Owner
 import com.nemo.githubrepositories_kmm.domain.GithubUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -11,6 +12,7 @@ import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -55,7 +57,7 @@ internal class MainListViewModelTest {
 
         coEvery {
             mockGithubUseCase.fetchGithubProjects(mockUserName)
-        } returns listOf()
+        } returns flow { emptyList<GithubProject>() }
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
             listOf(
@@ -90,13 +92,17 @@ internal class MainListViewModelTest {
             id = 0,
             name = String(),
             isPrivate = false,
-            ownerName = String(),
-            createdTime = Clock.System.now().toLocalDateTime(timeZone = TimeZone.UTC)
+            owner = Owner(
+                name = String(),
+                avatarUrl = String(),
+            ),
+            createdTime = Clock.System.now().toLocalDateTime(timeZone = TimeZone.UTC),
+            htmlUrl = String(),
         )
 
         coEvery {
             mockGithubUseCase.fetchGithubProjects(mockUserName)
-        } returns listOf(mockGithubProject)
+        } returns flow { listOf(mockGithubProject) }
 
         assertThat(viewModel.uiModelListFlow.value).isEqualTo(
             listOf(
